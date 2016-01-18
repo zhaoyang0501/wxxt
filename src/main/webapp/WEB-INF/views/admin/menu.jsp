@@ -30,7 +30,10 @@
 				
 					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>用户管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/category/index"><i class="icon-pencil"></i>文献分类</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/news/create"><i class="icon-pencil"></i>文献管理</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/article/index"><i class="icon-pencil"></i>文献管理</a></li>	
+					
+					<li><a href="${pageContext.request.contextPath}/admin/article/create"><i class="icon-pencil"></i>文献发布</a></li>	
+				
 					<li><a href="${pageContext.request.contextPath}/admin/news/create"><i class="icon-pencil"></i>新闻发布</a></li>	
 					</c:if>
 				<c:if test="${sessionScope.adminuser.username!='admin'}">
