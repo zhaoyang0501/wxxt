@@ -8,19 +8,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="http://pdfobject.com/scripts/pdfobject.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".date").datetimepicker({
-			language:  'zh-CN',
-	        weekStart: 1,
-	        todayBtn:  1,
-	        format:'yyyy-mm-dd',
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
-			forceParse: 0
-	    });
+		var success = new PDFObject({ url: "${pageContext.request.contextPath}/upload/${bean.url}" }).embed("pdf");
+		
+		
 		if("${tip}" != null && "${tip}" != ""){
 			noty({"text":"${tip}","layout":"top","type":"success","timeout":"2000"});
 		}
@@ -45,7 +38,7 @@
 					<div class="span12">
 						<div class="content-widgets ">
 						<div class="widget-head  bondi-blue">
-							<h3>填写文献发布表</h3>
+							<h3>填写文献发布1表</h3>
 						</div>
 						<div class="widget-container">
 							<form class="form-horizontal" method="POST" enctype ="multipart/form-data" action="${pageContext.request.contextPath}/admin/article/create">
@@ -53,58 +46,38 @@
 									<tr>
 										<td colspan="4">
 											<div class="table_title">
-												 <h3>文献发布表</h3> 
+												 <h3>文献查看</h3> 
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td class='lable'>标题</td>
-										<td class='lable' colspan="3"><input type="text" value="" name='title' style="width: 98%"></input></td>
+										<td class='lable' colspan="3"><span> ${bean.title }</span></td>
 									</tr>
 									<tr>
 										<td class='lable'>所属类别</td>
 										<td class='lable' colspan="3">
-											<div>
-											<c:forEach items="${category }" var="bean">
-											<label class="radio inline">
-													  <input  type="radio" name='category.id' value="${bean.id }">${bean.name }
-												</label>
-											</c:forEach>
-											</div>
+											<span> ${bean.category.name }</span>
 										</td>
 									</tr>
 									<tr>
 										<td class='lable'>关键字</td>
-										<td class='lable' colspan="3"><input type="text" value="" name='keyword' style="width: 98%"></input></td>
-									</tr>
-									
-									<tr>
-										<td class='lable'>文献摘要：<span class="text-error">*</span></td>
-										<td colspan="3" ><textarea  name='summary' style="width: 90%" rows="2" cols=""></textarea> </td>
-									</tr>
-									
-									<tr>
-										<td class='lable'>文件：<span class="text-error">*</span></td>
-										<td colspan="3" >
-											<input type="file" value="" name='file' style="width: 98%"></input>
-										 </td>
-									</tr>
-									<tr  class='remark'>
-										<td colspan="4">
-											<ol>
-											  <li>请如实填写资料</li>
-											  <li>所有信息可能会被核查</li>
-											</ol>
+										<td class='lable' colspan="3">
+										<span> ${bean.keyword}</span>
 										</td>
 									</tr>
+									
+									<tr>
+										<td class='lable'>文献摘要：</td>
+										<td colspan="3" ><textarea  name='summary' style="width: 90%" rows="2" cols="">
+										 ${bean.summary}
+										</textarea> </td>
+									</tr>
 								</table>
-								<div >
-									<button type="submit" class="btn btn-primary" >提交</button>
-								</div>
 							</form>
+							<div id="pdf" style="height: 900px"> <a href="">Click here to download the PDF</a></div>
 						</div>
 					</div>
-					
 					</div>
 				</div>
 			</div>

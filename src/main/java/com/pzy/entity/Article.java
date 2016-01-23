@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "t_Article")
 public class Article {
@@ -112,6 +114,6 @@ public class Article {
 	public void setClickcount(Integer clickcount) {
 		this.clickcount = clickcount;
 	}
-
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
 	private Date createDate;
 }

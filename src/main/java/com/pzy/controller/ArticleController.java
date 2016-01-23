@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.pzy.entity.Article;
 import com.pzy.service.ArticleService;
+import com.pzy.service.CategoryService;
 /***
  * @author panchaoyang
  *qq 263608237
@@ -32,6 +34,8 @@ import com.pzy.service.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private CategoryService categoryService;
 	@RequestMapping("index")
 	public String index(Model model) {
 		return "admin/article/index";
@@ -39,14 +43,19 @@ public class ArticleController {
 	
 	
 	@RequestMapping(value="create" , method = RequestMethod.GET) 
-	public String create() {
+	public String create( ModelMap model) {
+		model.addAttribute("category",categoryService.findAll());
 		return "admin/article/create";
 	}
 	@RequestMapping(value="create" , method = RequestMethod.POST) 
     public String upload(@RequestParam(value = "file", required = true) MultipartFile file, 
     		HttpServletRequest request, ModelMap model,Article article) throws IOException {  
-        	System.out.println("开始");  
-       
+        	
+			System.out.println("开始");  
+        	if(!"pdf".equalsIgnoreCase(StringUtils.getFilenameExtension(file.getOriginalFilename()))){
+        		model.addAttribute("tip","只能上传PDF文件");
+                return "admin/article/create";
+        	}
         	InputStream is=file.getInputStream();
         	String path = request.getSession().getServletContext().getRealPath("upload");  
             String fileName = file.getOriginalFilename();  

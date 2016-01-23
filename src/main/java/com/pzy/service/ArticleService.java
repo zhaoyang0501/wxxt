@@ -50,7 +50,33 @@ public class ArticleService {
          Page<Article> result = (Page<Article>) articleRepository.findAll(spec, pageRequest);
          return result;
      	}
-     
+     public Page<Article> findAll(final int pageNumber, final int pageSize,final String name,final String keyword,final String summary){
+         PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
+         Specification<Article> spec = new Specification<Article>() {
+			public Predicate toPredicate(Root<Article> root,
+					CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.conjunction();
+				if (name != null) {
+					predicate.getExpressions().add(
+							cb.like(root.get("title").as(String.class), "%"
+									+ name + "%"));
+				}
+				if (keyword != null) {
+					predicate.getExpressions().add(
+							cb.like(root.get("keyword").as(String.class), "%"
+									+ keyword + "%"));
+				}
+				if (summary != null) {
+					predicate.getExpressions().add(
+							cb.like(root.get("summary").as(String.class), "%"
+									+ summary + "%"));
+				}
+				return predicate;
+			}
+         };
+         Page<Article> result = (Page<Article>) articleRepository.findAll(spec, pageRequest);
+         return result;
+     	}
      public Page<Article> findAll(final int pageNumber, final int pageSize,final Integer type ){
          PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
          Specification<Article> spec = new Specification<Article>() {

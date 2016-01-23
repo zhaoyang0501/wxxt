@@ -24,10 +24,11 @@
 					<div class="controls input-icon">
 						<i class=" icon-key"></i><input type="password" id="password" name="password" class="input-block-level" data-placeholder="密码">
 					</div>
-					<div class="input-prepend">
-					<label class="remember" for="remember"><input type="checkbox" id="_spring_security_remember_me" name="_spring_security_remember_me" checked="true"/>记住我</label>
-					</div>
+					
 					<button class="btn btn-block" type="submit">登 陆</button>
+					<div class="controls input-icon">
+						<span><a href="">没有账号？点我 注册</a></span>
+					</div>
 				</div>
 		</form>
 	</div>

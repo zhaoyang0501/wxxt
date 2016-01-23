@@ -35,10 +35,15 @@
 					<li><a href="${pageContext.request.contextPath}/admin/article/create"><i class="icon-pencil"></i>文献发布</a></li>	
 				
 					<li><a href="${pageContext.request.contextPath}/admin/news/create"><i class="icon-pencil"></i>新闻发布</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/articleview/index"><i class="icon-pencil"></i>文献检索</a></li>	
+				
 					</c:if>
-				<c:if test="${sessionScope.adminuser.username!='admin'}">
-			
-				</c:if>
+					<c:if test="${sessionScope.adminuser.username!='admin'}">
+						<li><a href="${pageContext.request.contextPath}/admin/center/index"><i class="icon-pencil"></i>个人信息</a></li>	
+						<li><a href="${pageContext.request.contextPath}/admin/article/create"><i class="icon-pencil"></i>文献发布</a></li>	
+						<li><a href="${pageContext.request.contextPath}/admin/articleview/index"><i class="icon-pencil"></i>文献查询</a></li>	
+					
+					</c:if>
 				</ul>
 			</div>
 		</div>
