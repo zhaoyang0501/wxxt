@@ -128,24 +128,12 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label for="title" class="control-label">支付宝账号：</label>
+								<label for="title" class="control-label">学校或者单位：</label>
 								<div class="controls">
-									<input type="text" name='zfb' id=zfb placeholder="">
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">公式系数1：</label>
-								<div class="controls">
-									<input type="text" value="0.95" name='p1' id=p1 placeholder="">
+									<input type="text" name='grade' id=grade placeholder="">
 								</div>
 							</div>
 							
-							<div class="control-group">
-								<label for="title" class="control-label">公式系数2：</label>
-								<div class="controls">
-									<input type="text" value="10" name='p2' id=p2 placeholder="">
-								</div>
-							</div>
 						</form>
 					</div>
 				</div>

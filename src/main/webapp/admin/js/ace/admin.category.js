@@ -34,7 +34,7 @@ jQuery.category = {
 						var name = $("#_name").val();
 						if (!!name) {
 							aoData.push({
-								"name" : "name",
+								"name" : "categoryname",
 								"value" : name
 							});
 						}

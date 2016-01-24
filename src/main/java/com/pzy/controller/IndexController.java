@@ -99,6 +99,8 @@ public class IndexController {
     	}
 		
     	else if(user!=null){
+
+    		model.addAttribute("news",list.size()==0?new News():list.get(0));
     		httpSession.setAttribute("adminuser", user);
     		return "admin/index";
     	}

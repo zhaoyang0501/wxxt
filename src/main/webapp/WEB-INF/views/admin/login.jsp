@@ -27,7 +27,7 @@
 					
 					<button class="btn btn-block" type="submit">登 陆</button>
 					<div class="controls input-icon">
-						<span><a href="">没有账号？点我 注册</a></span>
+						<span><a href="../register"> 没 有账号？点我 注册</a></span>
 					</div>
 				</div>
 		</form>

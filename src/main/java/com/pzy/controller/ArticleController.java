@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pzy.entity.Article;
+import com.pzy.entity.User;
 import com.pzy.service.ArticleService;
 import com.pzy.service.CategoryService;
 /***
@@ -49,7 +51,7 @@ public class ArticleController {
 	}
 	@RequestMapping(value="create" , method = RequestMethod.POST) 
     public String upload(@RequestParam(value = "file", required = true) MultipartFile file, 
-    		HttpServletRequest request, ModelMap model,Article article) throws IOException {  
+    		HttpServletRequest request, ModelMap model,Article article,HttpSession httpSession) throws IOException {  
         	
 			System.out.println("开始");  
         	if(!"pdf".equalsIgnoreCase(StringUtils.getFilenameExtension(file.getOriginalFilename()))){
@@ -72,6 +74,7 @@ public class ArticleController {
             } 
          article.setClickcount(0);
         article.setCreateDate(new Date());
+        article.setUser((User)httpSession.getAttribute("adminuser"));
         article.setUrl(file.getOriginalFilename());
         articleService.save(article);		
      	model.addAttribute("tip","上传成功");

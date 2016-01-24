@@ -36,6 +36,7 @@ public class CategoryController {
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") int iDisplayStart,
 			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength, String categoryname
 			) throws ParseException {
+		 
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
 		Page<Category> categorys = categoryService.findAll(pageNumber, pageSize, categoryname);
@@ -44,6 +45,7 @@ public class CategoryController {
 		map.put("iTotalRecords", categorys.getTotalElements());
 		map.put("iTotalDisplayRecords", categorys.getTotalElements());
 		map.put("sEcho", sEcho);
+		
 		return map;
 	}
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
